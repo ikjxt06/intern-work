@@ -199,7 +199,6 @@
     </div>
 
     <script>
-        // DOM Elements
         const display = document.getElementById('display');
         const startBtn = document.getElementById('startBtn');
         const pauseBtn = document.getElementById('pauseBtn');
@@ -208,14 +207,11 @@
         const lapsContainer = document.getElementById('lapsContainer');
         const themeToggle = document.getElementById('themeToggle');
 
-        // Stopwatch variables
         let startTime;
         let elapsedTime = 0;
         let timerInterval;
         let isRunning = false;
         let lapCount = 1;
-
-        // Format time (hh:mm:ss.ms)
         function formatTime(time) {
             const date = new Date(time);
             const hours = date.getUTCHours().toString().padStart(2, '0');
@@ -225,13 +221,9 @@
             
             return `${hours}:${minutes}:${seconds}.${milliseconds}`;
         }
-
-        // Update the display
         function updateDisplay() {
             display.textContent = formatTime(elapsedTime);
         }
-
-        // Start the stopwatch
         function start() {
             if (!isRunning) {
                 startTime = Date.now() - elapsedTime;
@@ -244,8 +236,6 @@
                 pauseBtn.style.display = 'inline-block';
             }
         }
-
-        // Pause the stopwatch
         function pause() {
             if (isRunning) {
                 clearInterval(timerInterval);
@@ -254,8 +244,6 @@
                 pauseBtn.style.display = 'none';
             }
         }
-
-        // Reset the stopwatch
         function reset() {
             clearInterval(timerInterval);
             isRunning = false;
@@ -266,8 +254,6 @@
             startBtn.style.display = 'inline-block';
             pauseBtn.style.display = 'none';
         }
-
-        // Record lap time
         function lap() {
             if (isRunning) {
                 const lapTime = formatTime(elapsedTime);
@@ -281,20 +267,14 @@
                 lapCount++;
             }
         }
-
-        // Event listeners
         startBtn.addEventListener('click', start);
         pauseBtn.addEventListener('click', pause);
         resetBtn.addEventListener('click', reset);
         lapBtn.addEventListener('click', lap);
-
-        // Theme toggle
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
         });
-
-        // Initialize display
         updateDisplay();
     </script>
 </body>
